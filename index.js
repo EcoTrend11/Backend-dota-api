@@ -6,6 +6,9 @@ const apiRouter= require('./router/index')
 const {sequelize,Heroes} = require('./src/db');
 
 app.use('/api', apiRouter)
+app.get("/", (req, res ) =>{
+    res.send("estas en home")
+})
 
 
 
