@@ -4,6 +4,7 @@ const app = express();
 app.use(express.json());
 const apiRouter= require('./router/index')
 const {sequelize,Heroes} = require('./src/db');
+let port = process.env.PORT || 3001
 
 app.use('/api', apiRouter)
 app.get("/", (req, res ) =>{
@@ -14,7 +15,7 @@ app.get("/", (req, res ) =>{
 
 sequelize.sync()
 .then(() => {
-    app.listen(3001, () => {
+    app.listen(port, () => {
 
         // -----------------ONLY FOR PRECHARGE--------------------
 
