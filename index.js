@@ -2,15 +2,16 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 const apiRouter= require('./router/index')
 const {sequelize,Heroes} = require('./src/db');
 let port = process.env.PORT || 3001
 
 app.use('/api', apiRouter)
-app.get("/", (req, res ) =>{
-    res.send("estas en home")
-})
-
+app.use('/',apiRouter )
 
 
 sequelize.sync()
